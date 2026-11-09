@@ -2183,9 +2183,9 @@ const SECTIONS_NAV = [
   { id: 'stats',        label: 'Stats' },
   { id: 'features',     label: 'Features' },
   { id: 'how-it-works', label: 'How It Works' },
-  { id: 'api-flow',     label: 'API Flow' },
+  { id: 'api-flow',     label: 'Zero Lock-in' },
   // { id: 'pricing',      label: 'Pricing' },
-  { id: 'footer',       label: 'Info' },
+  // { id: 'footer',       label: 'Info' },
 ];
 
 function ScrollDots({ activeIdx, setActiveIdx }: { activeIdx: number; setActiveIdx: React.Dispatch<React.SetStateAction<number>> }) {
@@ -2401,13 +2401,20 @@ export function LandingPageContent() {
           {renderSlide(2, <StatsBar />)}
           {renderSlide(3, <Features />)}
           {renderSlide(4, <HowItWorks />)}
-          {renderSlide(5, <APIFlowSection />)}
-          {renderSlide(6, (
+          {renderSlide(5, (
             <>
-              {/* <PricingSection /> */}
+              <APIFlowSection />
               <Footer setActiveIdx={setActiveIdx} />
             </>
           ))}
+          {/*
+          {renderSlide(6, (
+            <>
+              <PricingSection />
+              <Footer setActiveIdx={setActiveIdx} />
+            </>
+          ))}
+          */}
         </div>
       </div>
     </>
