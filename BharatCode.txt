@@ -1,0 +1,7 @@
+Hackathon Context
+
+- Track: Coding & Developer Tools
+- Team Name: Brain Dead
+- Team Members:
+  - Bhavya Durgani (GitHub: [BhavyaDurgani](https://github.com/BhavyaDurgani))
+  - Jinay Bhatt (GitHub: [Jinay-Bhatt](https://github.com/Jinay-Bhatt))
