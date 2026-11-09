@@ -555,8 +555,8 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* ── Free Plan Ad Sponsor Banner (Neumorphic Card) ───────── */}
-        {!isPro && (
+        {/* ── Free Plan Ad Sponsor Banner (Neumorphic Card) (COMMENTED OUT) ───────── */}
+        {/* {!isPro && (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
             padding: '14px 20px', borderRadius: 16, marginBottom: 28,
@@ -581,7 +581,7 @@ export default function DashboardPage() {
               Remove Ads with Pro
             </Link>
           </div>
-        )}
+        )} */}
 
         {/* ── Stat Cards (Neumorphic Extrusions) ─────────────────── */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14, marginBottom: 32 }}>
@@ -642,7 +642,8 @@ export default function DashboardPage() {
                 <FolderOpen size={14} color="#ffffff" />
                 <span style={{ fontSize: 13.5, fontWeight: 700 }}>Project Workspaces</span>
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#ffffff', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', padding: '1px 8px', borderRadius: 99 }}>
-                  {isPro ? `${filtered.length} (Unlimited)` : `${filtered.length} / 5 Projects`}
+                  {/* {isPro ? `${filtered.length} (Unlimited)` : `${filtered.length} / 5 Projects`} */}
+                  {`${filtered.length} Projects`}
                 </span>
               </div>
               {search && <button onClick={() => setSearch('')} style={{ fontSize: 11, color: 'var(--text-faint)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>Clear</button>}

@@ -221,7 +221,7 @@ export default function SettingsPage() {
 
   const TABS = [
     { key: 'profile', icon: User, label: 'Profile Settings' },
-    { key: 'plan', icon: CreditCard, label: 'Plan & Billing' },
+    // { key: 'plan', icon: CreditCard, label: 'Plan & Billing' },
     { key: 'git', icon: GitBranch, label: 'GitHub / GitLab' },
     { key: 'export', icon: Package, label: 'API Keys & Codebase' },
   ];
@@ -478,7 +478,8 @@ export default function SettingsPage() {
           </div>
         )}
 
-        {/* ── PLAN & BILLING TAB ── */}
+        {/* ── PLAN & BILLING TAB (COMMENTED OUT) ──
+{/ * ── PLAN & BILLING TAB ── * /}
         {activeTab === 'plan' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {planSuccessMsg && (
@@ -487,7 +488,7 @@ export default function SettingsPage() {
               </div>
             )}
 
-            {/* Current Status Card */}
+            {/ * Current Status Card * /}
             <div style={{ padding: 28, background: '#0c0c0e', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '12px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
                 <div>
@@ -495,7 +496,7 @@ export default function SettingsPage() {
                     Active Subscription
                   </div>
                   <div style={{ fontSize: 24, fontWeight: 800, color: '#ffffff', fontFamily: "'Plus Jakarta Sans', sans-serif", display: 'flex', alignItems: 'center', gap: 10 }}>
-                    {/* {user?.plan === 'PRO_YEARLY' ? 'Pro Yearly' : user?.plan === 'PRO_MONTHLY' ? 'Pro Monthly' : 'Free Plan'} */}
+                    {/ * {user?.plan === 'PRO_YEARLY' ? 'Pro Yearly' : user?.plan === 'PRO_MONTHLY' ? 'Pro Monthly' : 'Free Plan'} * /}
                     Free Plan
                     <span style={{
                       fontSize: 10, fontWeight: 800, padding: '2px 10px', borderRadius: 99,
@@ -511,26 +512,26 @@ export default function SettingsPage() {
 
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: 22, fontWeight: 900, color: '#ffffff', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                    {/* {user?.plan === 'PRO_YEARLY' ? '₹4,999/yr' : user?.plan === 'PRO_MONTHLY' ? '₹499/mo' : '₹0'} */}
+                    {/ * {user?.plan === 'PRO_YEARLY' ? '₹4,999/yr' : user?.plan === 'PRO_MONTHLY' ? '₹499/mo' : '₹0'} * /}
                     ₹0
                   </div>
                   <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>
-                    {/* {user?.plan === 'PRO_YEARLY' ? 'Effective ₹417/month' : user?.plan === 'PRO_MONTHLY' ? 'Billed monthly' : 'Free forever'} */}
+                    {/ * {user?.plan === 'PRO_YEARLY' ? 'Effective ₹417/month' : user?.plan === 'PRO_MONTHLY' ? 'Billed monthly' : 'Free forever'} * /}
                     Free forever
                   </div>
                 </div>
               </div>
 
-              {/* Quotas Breakdown */}
+              {/ * Quotas Breakdown * /}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, paddingTop: 20, borderTop: '1px solid var(--border)' }}>
-                {/* AI Quota */}
+                {/ * AI Quota * /}
                 <div style={{ padding: 14, background: '#121214', borderRadius: 8, border: '1px solid var(--border)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: 5 }}>
                       <Cpu size={12} /> AI Generations
                     </span>
                     <span style={{ fontSize: 12, fontWeight: 800, color: '#ffffff', fontFamily: 'JetBrains Mono, monospace' }}>
-                      {user?.aiGenerationsCount || 0} / 3 {/* user?.plan?.startsWith('PRO') ? 12 : 3 */}
+                      {user?.aiGenerationsCount || 0} / 3 {/ * user?.plan?.startsWith('PRO') ? 12 : 3 * /}
                     </span>
                   </div>
                   <div style={{ height: 4, background: 'rgba(255,255,255,0.06)', borderRadius: 99, overflow: 'hidden' }}>
@@ -546,14 +547,14 @@ export default function SettingsPage() {
                   </div>
                 </div>
 
-                {/* Projects Quota */}
+                {/ * Projects Quota * /}
                 <div style={{ padding: 14, background: '#121214', borderRadius: 8, border: '1px solid var(--border)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', display: 'flex', alignItems: 'center', gap: 5 }}>
                       <Package size={12} /> Project Containers
                     </span>
                     <span style={{ fontSize: 12, fontWeight: 800, color: '#ffffff', fontFamily: 'JetBrains Mono, monospace' }}>
-                      Unlimited {/* user?.plan?.startsWith('PRO') ? 'Unlimited' : '5 Max' */}
+                      Unlimited {/ * user?.plan?.startsWith('PRO') ? 'Unlimited' : '5 Max' * /}
                     </span>
                   </div>
                   <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
@@ -561,7 +562,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
 
-                {/* Ads Status */}
+                {/ * Ads Status * /}
                 <div style={{ padding: 14, background: '#121214', borderRadius: 8, border: '1px solid var(--border)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', display: 'flex', alignItems: 'center', gap: 5 }}>
@@ -578,8 +579,8 @@ export default function SettingsPage() {
               </div>
             </div>
 
-            {/* Plan Switcher Grid - Commented out as everything is free now */}
-            {/*
+            {/ * Plan Switcher Grid - Commented out as everything is free now * /}
+            {/ *
             <div style={{ marginTop: 8 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#ffffff', marginBottom: 6 }}>
                 Switch or Upgrade Subscription
@@ -684,9 +685,12 @@ export default function SettingsPage() {
                 </div>
               </div>
             </div>
-            */}
+            * /}
           </div>
         )}
+
+        
+        */}
 
         {/* ── GIT TAB ── */}
         {activeTab === 'git' && (

@@ -1110,7 +1110,7 @@ export default function BuilderPage() {
               </button>
             </div>
 
-            {/* AI Plan Quota info */}
+            {/* AI Plan Quota info (Commented out)
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -1126,7 +1126,7 @@ export default function BuilderPage() {
             }}>
               <span style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 6 }}>
                 AI Generation Quota: <strong style={{ color: '#ffffff' }}>3/mo</strong>
-                {/* Plan Quota: <strong style={{ color: isPro ? '#00f2fe' : '#ffffff' }}>{isPro ? 'Pro (12/mo)' : 'Free (3/mo)'}</strong> */}
+                {/ * Plan Quota: <strong style={{ color: isPro ? '#00f2fe' : '#ffffff' }}>{isPro ? 'Pro (12/mo)' : 'Free (3/mo)'}</strong> * /}
               </span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{
@@ -1134,9 +1134,9 @@ export default function BuilderPage() {
                   fontWeight: 600,
                 }}>
                   {user?.aiGenerationsCount || 0} / 3 used
-                  {/* {user?.aiGenerationsCount || 0} / {isPro ? 12 : 3} used */}
+                  {/ * {user?.aiGenerationsCount || 0} / {isPro ? 12 : 3} used * /}
                 </span>
-                {/* {!isPro && (
+                {/ * {!isPro && (
                   <button
                     onClick={() => { setShowAi(false); setShowUpgradeModal(true); }}
                     style={{
@@ -1152,9 +1152,10 @@ export default function BuilderPage() {
                   >
                     Upgrade for 12/mo
                   </button>
-                )} */}
+                )} * /}
               </div>
             </div>
+            */}
 
             {aiError && (
               <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', padding: '10px 14px', marginBottom: 16, color: '#fca5a5', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", display: 'flex', alignItems: 'center', gap: 8, borderRadius: '8px' }}>
@@ -1438,7 +1439,7 @@ export default function BuilderPage() {
                 <div>
                   <h2 style={{ fontSize: 15, fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Workflow Templates</h2>
                   <p style={{ fontSize: 10, color: '#94a3b8', fontFamily: "'JetBrains Mono', monospace", marginTop: 2 }}>
-                    PRE-BUILT ARCHITECTURES · FREE BASIC & PRO ADVANCED
+                    PRE-BUILT ARCHITECTURES{/* · FREE BASIC & PRO ADVANCED */}
                   </p>
                 </div>
               </div>
@@ -1493,7 +1494,7 @@ export default function BuilderPage() {
                         }}>
                           {tpl.category}
                         </span>
-                        {tpl.isPro && (
+                        {/* {tpl.isPro && (
                           <span style={{
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -1509,7 +1510,7 @@ export default function BuilderPage() {
                           }}>
                             <Lock size={9} /> PRO
                           </span>
-                        )}
+                        )} */}
                       </div>
                       <span style={{ fontSize: 10, color: '#64748b', fontFamily: "'JetBrains Mono', monospace" }}>
                         {tpl.nodes.length} Nodes

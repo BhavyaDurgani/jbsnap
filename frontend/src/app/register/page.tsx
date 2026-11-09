@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { User, Mail, Lock, Users, ArrowLeft } from 'lucide-react';
 import { api } from '../../services/api';
-import GoogleSignInButton from '../../components/GoogleSignInButton';
+// import GoogleSignInButton from '../../components/GoogleSignInButton';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -44,11 +44,11 @@ export default function RegisterPage() {
     }
   };
 
-  const handleGoogleSuccess = (res: any) => {
-    localStorage.setItem('ff_token', res.token);
-    localStorage.setItem('ff_user', JSON.stringify(res.user));
-    router.replace('/dashboard');
-  };
+  // const handleGoogleSuccess = (res: any) => {
+  //   localStorage.setItem('ff_token', res.token);
+  //   localStorage.setItem('ff_user', JSON.stringify(res.user));
+  //   router.replace('/dashboard');
+  // };
 
   return (
     <main style={{
@@ -382,20 +382,22 @@ export default function RegisterPage() {
               )}
             </button>
 
-            {/* Divider */}
+            {/* Divider (Commented out)
             <div style={{ display: 'flex', alignItems: 'center', margin: '2px 0', gap: 12 }}>
               <div style={{ flex: 1, height: 1, background: 'var(--neu-border)' }} />
               <span style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>OR</span>
               <div style={{ flex: 1, height: 1, background: 'var(--neu-border)' }} />
             </div>
+            */}
 
-            {/* 1 Single Google OAuth Sign-Up Button */}
+            {/* 1 Single Google OAuth Sign-Up Button (Commented out)
             <GoogleSignInButton
               text="Sign up with Google"
               onSuccess={handleGoogleSuccess}
               gender={form.gender}
               disabled={loading}
             />
+            */}
           </div>
         </form>
 
