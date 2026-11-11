@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
+import { NotificationProvider } from '../context/NotificationContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -127,8 +129,6 @@ const jsonLdSchema = {
   ]
 };
 
-import { NotificationProvider } from '../context/NotificationContext';
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
@@ -136,10 +136,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/logo.jpg" />
         <link rel="apple-touch-icon" href="/logo.jpg" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        {/* Adcash Autotag Library */}
-        <script id="aclib" async defer type="text/javascript" src="//acscdn.com/script/aclib.js" />
         <script
-          type="text/javascript"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
+        />
+      </head>
+      <body suppressHydrationWarning>
+        {/* Adcash Autotag Library managed via Next.js Script to prevent extension hydration mismatch */}
+        <Script
+          id="aclib"
+          strategy="afterInteractive"
+          src="//acscdn.com/script/aclib.js"
+        />
+        <Script
+          id="aclib-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -163,12 +174,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
-        />
-      </head>
-      <body>
         <NotificationProvider>
           {children}
         </NotificationProvider>

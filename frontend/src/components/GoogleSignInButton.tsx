@@ -25,7 +25,9 @@ export default function GoogleSignInButton({
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const isMountedRef = useRef(true);
 
-  const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
+  const GOOGLE_CLIENT_ID =
+    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+    '680516186557-pl1que44559nlb12n8ar76cjufcen9qk.apps.googleusercontent.com';
 
   // Decodes JWT payload without external libraries
   const decodeJwtPayload = (token: string) => {
