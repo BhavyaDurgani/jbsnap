@@ -166,12 +166,35 @@ export async function loginUser(request: FastifyRequest, reply: FastifyReply) {
 }
 
 export async function googleLogin(request: FastifyRequest, reply: FastifyReply) {
-  const { email, name, picture, gender } = request.body as {
+  const body = request.body as {
     email?: string;
     name?: string;
     picture?: string;
     gender?: string;
+    credential?: string;
   };
+
+  let email = body.email ? body.email.trim().toLowerCase() : undefined;
+  let name = body.name ? body.name.trim() : undefined;
+  let picture = body.picture;
+  const gender = body.gender;
+
+  if (body.credential) {
+    try {
+      const verifyUrl = 'https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(body.credential);
+      const verifyRes = await fetch(verifyUrl);
+      if (verifyRes.ok) {
+        const gUser = (await verifyRes.json()) as any;
+        if (gUser.email) {
+          email = gUser.email.toLowerCase();
+          name = gUser.name || name;
+          picture = gUser.picture || picture;
+        }
+      }
+    } catch (err: any) {
+      request.log.warn('Google tokeninfo verification failed: ' + (err?.message || err));
+    }
+  }
 
   if (!email) {
     return reply.status(400).send({

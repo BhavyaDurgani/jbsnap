@@ -137,7 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/logo.jpg" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         {/* Adcash Autotag Library */}
-        <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js" />
+        <script id="aclib" async defer type="text/javascript" src="//acscdn.com/script/aclib.js" />
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{

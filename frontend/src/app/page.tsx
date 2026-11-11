@@ -603,6 +603,50 @@ function WatchDemo({ playTrigger = 0 }: { playTrigger?: number }) {
   );
 }
 
+function StatCardItem({ s, i, isLoading }: { s: any; i: number; isLoading: boolean }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <Reveal key={s.label} delay={i * 90} direction="up">
+      <div
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
+        style={{
+          padding: '24px 20px',
+          background: 'var(--neu-surface)',
+          border: `1px solid ${hov ? 'var(--neu-border-bevel)' : 'var(--neu-border)'}`,
+          borderRadius: 20,
+          position: 'relative',
+          transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
+          transform: hov ? 'translateY(-3px)' : 'none',
+          boxShadow: hov ? 'var(--neu-flat-lg)' : 'var(--neu-flat)',
+          minHeight: 140,
+        }}
+      >
+        <div style={{
+          opacity: isLoading ? 0 : 1,
+          filter: isLoading ? 'blur(10px)' : 'none',
+          transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s cubic-bezier(0.16,1,0.3,1)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--neu-surface)', border: '1px solid var(--neu-border)', boxShadow: 'var(--neu-flat-xs)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+              {s.icon}
+            </div>
+            <span style={{ fontSize: 9, fontWeight: 800, color: '#ffffff', background: 'var(--neu-surface)', border: '1px solid var(--neu-border)', boxShadow: 'var(--neu-flat-xs)', padding: '3px 9px', borderRadius: 99, letterSpacing: '0.04em' }}>
+              {s.trend}
+            </span>
+          </div>
+          
+          <div style={{ fontSize: 36, fontWeight: 900, letterSpacing: '-1.5px', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff', lineHeight: 1, marginBottom: 4 }}>
+            <AnimCounter to={s.value} suffix={s.suffix} />
+          </div>
+          <div style={{ fontSize: 13.5, fontWeight: 700, color: '#94a3b8', marginBottom: 2 }}>{s.label}</div>
+          <div style={{ fontSize: 11, color: '#475569', lineHeight: 1.3 }}>{s.micro}</div>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 /* ─── Stats Section: Live Telemetry Dashboard ─── */
 function StatsBar() {
   const [realtimeStats, setRealtimeStats] = useState<{
@@ -762,49 +806,9 @@ function StatsBar() {
             }}>
               {/* 2x2 Stats Grid */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                {stats.map((s, i) => {
-                  const [hov, setHov] = useState(false);
-                  return (
-                    <Reveal key={s.label} delay={i * 90} direction="up">
-                      <div
-                        onMouseEnter={() => setHov(true)}
-                        onMouseLeave={() => setHov(false)}
-                        style={{
-                          padding: '24px 20px',
-                          background: 'var(--neu-surface)',
-                          border: `1px solid ${hov ? 'var(--neu-border-bevel)' : 'var(--neu-border)'}`,
-                          borderRadius: 20,
-                          position: 'relative',
-                          transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
-                          transform: hov ? 'translateY(-3px)' : 'none',
-                          boxShadow: hov ? 'var(--neu-flat-lg)' : 'var(--neu-flat)',
-                          minHeight: 140,
-                        }}
-                      >
-                        <div style={{
-                          opacity: isLoading ? 0 : 1,
-                          filter: isLoading ? 'blur(10px)' : 'none',
-                          transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s cubic-bezier(0.16,1,0.3,1)',
-                        }}>
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-                            <div style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--neu-surface)', border: '1px solid var(--neu-border)', boxShadow: 'var(--neu-flat-xs)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
-                              {s.icon}
-                            </div>
-                            <span style={{ fontSize: 9, fontWeight: 800, color: '#ffffff', background: 'var(--neu-surface)', border: '1px solid var(--neu-border)', boxShadow: 'var(--neu-flat-xs)', padding: '3px 9px', borderRadius: 99, letterSpacing: '0.04em' }}>
-                              {s.trend}
-                            </span>
-                          </div>
-                          
-                          <div style={{ fontSize: 36, fontWeight: 900, letterSpacing: '-1.5px', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff', lineHeight: 1, marginBottom: 4 }}>
-                            <AnimCounter to={s.value} suffix={s.suffix} />
-                          </div>
-                          <div style={{ fontSize: 13.5, fontWeight: 700, color: '#94a3b8', marginBottom: 2 }}>{s.label}</div>
-                          <div style={{ fontSize: 11, color: '#475569', lineHeight: 1.3 }}>{s.micro}</div>
-                        </div>
-                      </div>
-                    </Reveal>
-                  );
-                })}
+                {stats.map((s, i) => (
+                  <StatCardItem key={s.label} s={s} i={i} isLoading={isLoading} />
+                ))}
               </div>
 
               {/* Latency line chart card */}

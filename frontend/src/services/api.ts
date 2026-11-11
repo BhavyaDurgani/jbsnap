@@ -89,7 +89,7 @@ export const api = {
       clearApiCache();
       return request('/auth/register', { method: 'POST', body: JSON.stringify(body) });
     },
-    googleLogin: (body: { email: string; name?: string; picture?: string; gender?: string }) => {
+    googleLogin: (body: { email: string; name?: string; picture?: string; gender?: string; credential?: string }) => {
       clearApiCache();
       return request('/auth/google', { method: 'POST', body: JSON.stringify(body) });
     },

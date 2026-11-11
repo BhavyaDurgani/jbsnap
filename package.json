@@ -14,5 +14,8 @@
     "db:generate": "npm run prisma:generate --prefix backend",
     "db:push": "npm run prisma:push --prefix backend",
     "db:studio": "npm run prisma:studio --prefix backend"
+  },
+  "dependencies": {
+    "bullmq": "^6.7.2"
   }
 }
