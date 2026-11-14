@@ -56,7 +56,31 @@ async function fetchAndCache<T = any>(
   }
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const res = await fetch(`${BASE_URL}/api${endpoint}`, { ...options, headers });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}/api${endpoint}`, {
+      ...options,
+      headers,
+      signal: options.signal || controller.signal,
+    });
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      throw new Error(`Request timed out after 15s. Is backend running at ${BASE_URL}?`);
+    }
+    const isHttps = typeof window !== 'undefined' && window.location.protocol === 'https:';
+    if (isHttps && BASE_URL.startsWith('http://')) {
+      throw new Error(`Mixed Content Block: Browser blocked request to '${BASE_URL}' because the page is served over HTTPS. Configure NEXT_PUBLIC_API_URL with your production backend HTTPS URL.`);
+    }
+    if (err.message?.includes('Failed to fetch') || err.name === 'TypeError') {
+      throw new Error(`Cannot connect to backend server at ${BASE_URL}. Ensure the backend service is running.`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 
   if (!res.ok) {
     if (res.status === 401 && endpoint !== '/auth/login' && endpoint !== '/auth/register') {

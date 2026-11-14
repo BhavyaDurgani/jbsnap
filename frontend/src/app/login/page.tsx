@@ -26,13 +26,15 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
     try {
-      const res = await api.auth.login(form);
+      const res = await api.auth.login({
+        email: form.email.trim().toLowerCase(),
+        password: form.password,
+      });
       localStorage.setItem('ff_token', res.token);
       localStorage.setItem('ff_user', JSON.stringify(res.user));
-      router.replace('/dashboard');
+      window.location.href = '/dashboard';
     } catch (err: any) {
       setError(err.message || 'Invalid email or password');
-    } finally {
       setLoading(false);
     }
   };
@@ -40,7 +42,7 @@ export default function LoginPage() {
   const handleGoogleSuccess = (res: any) => {
     localStorage.setItem('ff_token', res.token);
     localStorage.setItem('ff_user', JSON.stringify(res.user));
-    router.replace('/dashboard');
+    window.location.href = '/dashboard';
   };
 
   return (

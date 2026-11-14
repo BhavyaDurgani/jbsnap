@@ -47,7 +47,7 @@ export default function RegisterPage() {
   const handleGoogleSuccess = (res: any) => {
     localStorage.setItem('ff_token', res.token);
     localStorage.setItem('ff_user', JSON.stringify(res.user));
-    router.replace('/dashboard');
+    window.location.href = '/dashboard';
   };
 
   return (

@@ -365,9 +365,19 @@ export default function DashboardPage() {
 
   const loadProjects = async () => {
     setLoading(true);
-    try { setProjects(await api.projects.list()); }
-    catch { router.replace('/login'); }
-    finally { setLoading(false); }
+    try {
+      const data = await api.projects.list();
+      setProjects(data || []);
+    } catch (err: any) {
+      console.error('Failed to load projects:', err);
+      if (err?.message?.includes('401') || err?.message?.includes('Unauthorized')) {
+        localStorage.removeItem('ff_token');
+        localStorage.removeItem('ff_user');
+        window.location.href = '/login';
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCreate = async (e: React.FormEvent) => {

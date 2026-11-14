@@ -114,9 +114,11 @@ export async function loginUser(request: FastifyRequest, reply: FastifyReply) {
     });
   }
 
+  const normalizedEmail = email.trim().toLowerCase();
+
   try {
     const rawUser = await prisma.user.findUnique({
-      where: { email },
+      where: { email: normalizedEmail },
     });
 
     if (!rawUser || !rawUser.passwordHash) {

@@ -35,3 +35,4 @@ backend/dump.rdb
 *.ppt
 *.pptx
 *script.txt
+.vercel
